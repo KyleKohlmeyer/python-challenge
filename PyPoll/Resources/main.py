@@ -38,11 +38,11 @@ with open(csvpath) as csvfile:
         votetotal = votetotal + 1
 
         # Using the variable above, find which candidate this vote is for and add it to their totals
-        if cand == str("Charles Casper Stockham"):
+        if cand == str(candinfo["candidate"][0]):
             cand1total = cand1total + 1
-        if cand == str("Diana DeGette"):
+        if cand == str(candinfo["candidate"][1]):
             cand2total = cand2total + 1
-        if cand == str("Raymon Anthony Doane"):
+        if cand == str(candinfo["candidate"][2]):
             cand3total = cand3total + 1
 
 # Create list to add the vote totals to the candidate dictionary
