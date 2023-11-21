@@ -10,23 +10,20 @@ rowmax = 0
 rowmin = 0
 
 # Set path for file
-csvpath = os.path.join(os.path.dirname(__file__), "..", "Resources", "budget_data.csv")
+csvpath = os.path.join(os.path.dirname(__file__), "Resources", "budget_data.csv")
 
 with open(csvpath) as csvfile:
 
     # CSV reader specifies delimiter and variable that holds contents
     csvreader = csv.reader(csvfile, delimiter=',')
 
-    print(csvreader)
-
     # Read the header row first 
     csv_header = next(csvreader)
-    print(f"CSV Header: {csv_header}")
+    
     
     # Read each row of data after the header
     for row in csvreader:
-        print(row)
-        
+      
         #count each row (month) for the dataset to find total number of months
         rowcount = rowcount + 1
 
@@ -58,23 +55,24 @@ print(f"The net profit/loss is: ${rowsum}")
 print(f"The average change is: ${average_change}")
 print(f"Greatest increase in profits: {rowhead} ${rowmax}")
 print(f"The greatest loss in profits: {rowheadmin} ${rowmin}")
+print("---------------------------------------------------------------------")
 
-# Set path for the file the results are printed to
-output_path = os.path.join(os.path.dirname(__file__), "..", "resources", "new.csv")
+output_path = os.path.join(os.path.dirname(__file__), "Analysis", "analysis.txt")
 
-# Open the file using "write" mode. Specify the variable to hold the contents
-with open(output_path, 'w') as csvfile:
-
-    # Initialize csv.writer
-    csvwriter = csv.writer(csvfile, delimiter=',')
-
-    # Write the rows to new file
-    csvwriter.writerow(['Financial Analysis'])
-    csvwriter.writerow(['----------------------------------------------------'])
-    csvwriter.writerow([f'The amount of months is: {rowcount}'])
-    csvwriter.writerow([f'The net profit/loss is: ${rowsum}'])
-    csvwriter.writerow([f'The average change is: ${average_change}'])
-    csvwriter.writerow([f'Greatest increase in profits: {rowhead} ${rowmax}'])
-    csvwriter.writerow([f'Greateast loss in profits: {rowheadmin} ${rowmin}'])
+# Open the file using "write" mode. Specify the variable to hold the content
+with open(output_path, "w", encoding="utf-8") as textfile:
+    
+    # Print info to text file
+    textfile.write("Financial Analysis\n")
+    textfile.write("----------------------------------------------------\n")
+    textfile.write(f"The amount of months is: {rowcount}\n")
+    textfile.write(f"The net profit/loss is: ${rowsum}\n")
+    textfile.write(f"The average change is: ${average_change}\n")
+    textfile.write(f"Greatest increase in profits: {rowhead} ${rowmax}\n")
+    textfile.write(f"The greatest loss in profits: {rowheadmin} ${rowmin}\n")
+    textfile.write("----------------------------------------------------\n")
+   
+   
+   
 
     
